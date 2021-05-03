@@ -1,0 +1,44 @@
+<div id="register"> 
+        <h3 class="text-center text-white pt-5">Register form</h3>
+        <div class="container">
+            <div id="register-row" class="row justify-content-center align-items-center">
+                <div id="register-column" class="col-md-6">
+                    <div id="register-box" class="col-md-12">
+                        <form [formGroup]="form">
+                            <h3 class="text-center text-info">Register</h3>
+                            <div class="form-group">
+                                <label for="username" class="text-info">Username:</label><br>
+                                <input type="text" name="username" id="username" class="form-control" placeholder="Username" formControlName="username">
+                                <div *ngIf="form.controls.username.invalid && form.controls.username.touched" class="alert alert-danger">Korisnicko ime mora imati najmanje 4 znaka.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="text-info">Password:</label><br>
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Password" formControlName="password">
+                                <div *ngIf="form.controls.password.invalid && form.controls.password.touched" class="alert alert-danger">Lozinka mora biti unesena.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="passwordr" class="text-info">Password:</label><br>
+                                <input type="password" name="passwordr" id="passwordr" class="form-control" placeholder="Repeat password" formControlName="repeat" pattern="{{ form.controls.password.value }}">
+                                <div *ngIf="form.controls.repeat.invalid && form.controls.repeat.touched" class="alert alert-danger">Lozinke se moraju poklapati.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="first_name" class="text-info">First name:</label><br>
+                                <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First name" formControlName="first_name">
+                                <div *ngIf="form.controls.first_name.invalid && form.controls.first_name.touched" class="alert alert-danger">Unesite svoje ime.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name" class="text-info">Last name:</label><br>
+                                <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last name" formControlName="last_name">
+                                <div *ngIf="form.controls.last_name.invalid && form.controls.last_name.touched" class="alert alert-danger">Unesite svoje prezime.</div>
+                            </div>
+                            <div class="form-group">
+                                <button [disabled]="form.status != 'VALID'" type="button" class="btn btn-primary" (click)="register()">Registracija</button>
+                                <a routerLink='/login' style="margin-left: 20px"><button type="button" class="btn btn-secondary"> &lt; Prijava</button></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div *ngIf="errorMessage.length > 0" id="error-message" class="alert alert-danger">{{errorMessage}}</div>
+            </div>
+        </div>
+</div>

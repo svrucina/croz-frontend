@@ -1,0 +1,52 @@
+<div class="container margins" *ngIf="user != null">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Dobro došli,</h5>
+      <h6 class="card-subtitle mb-2 text-muted clickable" routerLink="/profile">{{user.username}} (Profil)</h6>
+      <button type="button" class="btn btn-danger btn-sm" (click)="logout()">Odjava</button>
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input clickable" id="switch" (change)="toggleSwitch($event)">
+        <label class="custom-control-label clickable" for="switch">Prikaži samo moje postove</label>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="message.length > 0" class="alert alert-danger clickable" role="alert" (click)="message = ''">
+    {{message}}
+    <button type="button" class="btn btn-danger btn-sm">X</button>
+  </div>
+  <div class="container margins">
+    <div class="row" style="display: block">
+      <form [formGroup]="form">
+        <textarea class="form-control" rows="4" placeholder="Upiši komentar ovdje..." name="username" id="username" formControlName="comment"></textarea>
+        <button class="btn btn-sm" [ngClass]="editing === -1 ? 'btn-success' : 'btn-warning'"
+                type="button" [disabled]="form.controls.comment.value.length < 1" (click)="sendComment()">
+          {{editing === -1 ? 'Dodaj novi komentar' : 'Uredi komentar [' + editing + ']'}}</button>
+        <button class="btn btn-danger btn-sm" type="button" (click)="cancel()">Poništi</button>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="posts.length > 0" class="container margins">
+    <div class="row" style="display: block">
+      <div class="panel panel-default widget">
+        <div class="panel-heading">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
+            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+          </svg>
+          <h3 class="panel-title">
+            Postovi</h3>
+          <span class="label label-info">
+                    [{{posts.length}}]</span>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li *ngFor="let post of posts; let i = index" class="list-group-item"
+                [ngClass]="post.id === point ? 'point' : 'default'">
+              <app-post [post]="post" (editPost)="prepareForEdit($event)"></app-post>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,21 @@
+<div class="container" *ngIf="user">
+  <div class="row">
+    <h2>User information</h2>
+  </div>
+  <div class="row">
+    <h6>ID: {{user.id}}</h6>
+  </div>
+  <div class="row">
+    <h6>Username: {{user.username}}</h6>
+  </div>
+  <div class="row">
+    <h6>First name: {{user.first_name}}</h6>
+  </div>
+  <div class="row">
+    <h6>Last name: {{user.last_name}}</h6>
+  </div>
+  <div class="row">
+    <h6>Authorities: <span *ngFor="let authority of user.authorities;" [innerText]="authority.name"></span> </h6>
+  </div>
+  <button class="btn btn-danger btn-sm" type="button" routerLink="/">< Povratak</button>
+</div>

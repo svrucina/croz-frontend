@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row" style="display: block">
+    <div class="col">
+      <div class="row" style="color: #ffda70">
+        {{'#' + post.id + ' by ' + post.author.username + ' (' + post.author.first_name + ' '
+      + post.author.last_name + ')  @ ' + (post.date | customDate)
+      + (post.updated ? ', Last update: ' + (post.updated | customDate) : '')}}
+      </div>
+      <div class="row">{{post.comment}}</div>
+      <div class="row" *ngIf="user.id === post.author.id || isAdmin()">
+        <button *ngIf="user.id === post.author.id" type="button" class="btn btn-success btn-sm" (click)="edit()">Uredi</button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="delete()">Obriši</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+.clickable{
+  cursor: pointer;
+}
+.widget .panel-title { display:inline }
+.widget .label-info { float: right; }
+
+.margins{
+  margin: 10px;
+}
+
+.point{
+  background-color: #ad6eff;
+}
+
+.default{
+  background-color: #6D9AFF;
+}
+
+.default:nth-child(2n){
+  background-color: #4D8FFF;
+}
